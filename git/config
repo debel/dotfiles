@@ -1,0 +1,47 @@
+[alias]
+  lg = !sh debel-git-log.sh "$@"
+  br = !sh debel-git-branch.sh "$@"
+  cb = !sh debel-git-branch.sh "$@" | xargs git switch
+	st = status --short --branch
+	co = checkout
+	sl = stash list
+	prb = pull --rebase
+	qfx = commit -p --amend --no-edit
+	rmts = remote -v
+  sfp = push --force-with-lease
+  shl = !sh debel-git-stash.sh "$@"
+
+[user]
+	name = Mihail Mikov
+	email = __redacted__
+
+[pull]
+	ff = only
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+[push]
+  autoSetupRemote = true
+
+[core]
+  editor = nvim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  side-by-side = true
+
+[merge]
+  conflictstyle=diff3
+
+[diff]
+  colorMoved = default
+
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
