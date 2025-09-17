@@ -34,14 +34,3 @@ set_filetype_highlights("go", {
   ["@boolean.json"] = { italic = true },
   ["@debel.type_annotation"] = { bold = true, underline = true, standout = true },
 })
-
--- vim.api.nvim_set_hl(0, "@keyword.sql", { bold = true, underline = true })
--- vim.api.nvim_set_hl(0, "@variable.member.sql", { italic = true })
--- vim.api.nvim_set_hl(0, "@type.sql", { italic = true })
--- vim.api.nvim_set_hl(0, "@variable.parameter.sql", { standout = true })
--- vim.api.nvim_set_hl(0, "@attribute.sql", { bold = true })
-
--- vim.api.nvim_set_hl(0, "@property.json", { bold = true })
--- vim.api.nvim_set_hl(0, "@number.json", { italic = true })
--- vim.api.nvim_set_hl(0, "@string.json", { italic = true })
--- vim.api.nvim_set_hl(0, "@boolean.json", { italic = true })
