@@ -1,14 +1,14 @@
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    "layer": "bottom",
+    "position": "bottom",
+//    "height": 26,
     // "width": 1280, // Waybar width
     "spacing": 10, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces"],
     "modules-center": [],
-    //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "clock", "tray"],
-    "modules-right": ["mpd", "idle_inhibitor", "temperature", "cpu", "memory","network", "pulseaudio", "backlight", "keyboard-state", "tray", "clock"],
+    //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "clock", "tray"],
+    "modules-right": ["mpd", "idle_inhibitor", "temperature", "battery", "cpu", "memory", "bluetooth", "network", "pulseaudio", "backlight", "tray", "clock"],
     // Modules configuration
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -54,7 +54,7 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)",
         "on-click": "mpc toggle",
-        "on-click-right": "foot -a ncmpcpp ncmpcpp",
+       // "on-click-right": "foot -a ncmpcpp ncmpcpp",
         "on-scroll-up": "mpc volume +2",
         "on-scroll-down": "mpc volume -2"
 
@@ -68,19 +68,21 @@
     },
     "tray": {
         "icon-size": 21,
-        "spacing": 10
+        "spacing": 4
     },
     "clock": {
         "timezone": "Europe/Sofia",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<big><tt>{calendar}</tt></big>",
         "format": "{:L%Y-%m-%d <small>[%a]</small> %H:%M}"
     },
     "cpu": {
         "format": " {usage}%",
-//        "tooltip": false
+        //  "tooltip": false
+        "on-click-right": "ghostty -e btop"
     },
     "memory": {
-        "format": " {}%"
+        "format": " {}%",
+        "on-click-right": "ghostty -e btop"
     },
     "temperature": {
         "thermal-zone": 2,
@@ -88,7 +90,7 @@
         "critical-threshold": 80,
         "format-critical": "{icon} {temperatureC}°C",
         "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -96,17 +98,17 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
+        "bat": "BAT0",
         "states": {
-            // "good": 95,
+            "full": 100,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
+        "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
@@ -114,12 +116,13 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": " {ifname}",
-        "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": " {ifname} (No IP)",
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈁 {ifname}",
+        "tooltip-format": "󰛳 {ifname} via {gwaddr}",
+        "format-linked": "󰛳 {ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠ {ifname}",
-        "format-alt": " {ifname}: {ipaddr}/{cidr}"
+        "format-alt": "󰛳 {ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "ghostty -e impala"
     },
     "bluetooth": {
       "format": "\uf294 {status}",
@@ -128,27 +131,27 @@
       "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+      "on-click-right": "ghostty -e bluetuith"
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
         "format": "{icon} {volume}% {format_source}",
         "format-bluetooth": " {icon} {volume}% {format_source}",
-        "format-bluetooth-muted": "  {icon} {format_source}",
-        "format-muted": "  {format_source}",
+        "format-bluetooth-muted": "  {icon} {format_source}",
+        "format-muted": " {format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format-source-muted": " ",
         "format-icons": {
-//            "headphone": "",
-//            "hands-free": "",
-//            "headset": "",
-//            "phone": "",
-//            "portable": "",
-//            "car": "",
-            "default": ["", "", ""]
+//            "headphone": " ",
+//            "hands-free": " ",
+//            "headset": " ",
+//            "phone": " ",
+//            "portable": " ",
+//            "car": " ",
+            "default": [" ", " ", "  "]
         },
-        "on-click": "pavucontrol",
-        "on-click-right": "foot -a pw-top pw-top"
+        "on-click-right": "pavucontrol",
     },
     "custom/media": {
         "format": "{icon} {}",

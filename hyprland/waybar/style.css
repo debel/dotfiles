@@ -1,8 +1,9 @@
 #waybar {
-  background: transparent;
-  color : #cceecc;
+  background: rgba(50, 50, 50, .7);
+  color : #ddd;
+  text-shadow: 3px 3px 3px black;
   border: none;
-  font-family: 'BlexMono';
+  font-family: 'BlexMono Nerd Font';
 }
 
 * {
@@ -16,6 +17,7 @@
   margin: 0px;
   padding: 0px;
   padding-left: 0px;
+  padding-bottom: 2px;
 }
 
 #workspaces * {
@@ -27,17 +29,20 @@
 }
 
 #workspaces button {
-  color: #557799;
-  background: rgba(221, 238, 255, .1);
+  color: #eee;
+  background: rgba(255, 255, 255, .5);
 }
 
 #workspaces button.active {
   font-weight: bold;
-  color: #33ccff;
+  color: black;
+  background: rgba(255, 255, 255, 1);
 }
 
 #clock {
   padding-right: 1em;
 }
 
-
+.calendar {
+  background: rgb(255, 0, 0);
+}
