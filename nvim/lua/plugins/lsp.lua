@@ -33,6 +33,14 @@ return {
         "bash-language-server",
         "shellcheck",
       },
+      ui = {
+        border = "rounded",
+        icons = {
+          package_installed = "✔️",
+          package_pending = "",
+          package_uninstalled = "",
+        },
+      },
     },
   },
   {
@@ -60,29 +68,26 @@ return {
           focus = true,
           auto_close = true,
           mode = "workspace_symbols",
-          filter = {
-            -- any = {
-            --   kind = { "Method" },
-            -- },
-          },
           win = {
+            auto_close = true,
             type = "float",
             border = "rounded",
             size = { width = 0.4, height = 0.7 },
-            position = { 10, 50 },
+            position = { 5, 20 },
             title = " LSP References",
           },
           preview = {
+            auto_close = true,
             type = "float",
             border = "rounded",
-            position = { 10, 165 },
-            size = { width = 0.3, height = 0.7 },
+            size = { width = 0.4, height = 0.7 },
+            position = { 5, 100 },
             zindex = 500,
           },
           keys = {
             q = "close",
             ["<esc>"] = "close",
-            ["<cr>"] = "jump",
+            ["<cr>"] = "jump_close",
           },
         },
       },

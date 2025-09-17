@@ -45,12 +45,17 @@ LazyVim.safe_keymap_set("n", "B", function()
   require("gitsigns").blame_line({ full = false })
 end, { desc = "Show git blame tooltip for current line" })
 
-LazyVim.safe_keymap_set("n", "gm", function()
-  require("fzf-lua").lsp_live_workspace_symbols({
-    lsp_query = vim.fn.expand("<cword>"),
-    kind = "Method",
-  })
-end, { desc = "List methods belonging to given struct" })
+-- map diagnostic helpers to show errors only
+LazyVim.safe_keymap_set("n", "<leader>se", function()
+  require("fzf-lua").diagnostics_document({ severity_only = true, severity_limit = vim.diagnostic.severity.ERROR })
+end, { desc = "Search Errors in Document" })
+
+LazyVim.safe_keymap_set("n", "<leader>sE", function()
+  require("fzf-lua").diagnostics_workspace({ severity_only = true, severity_limit = vim.diagnostic.severity.ERROR })
+end, { desc = "Search Errors in Workspace" })
+
+-- map LSP symbol search (see ../plugins/lsp.lua)
+LazyVim.safe_keymap_set("n", "gS", "<cmd>Trouble lsp toggle<cr>", { desc = "Show lsp references" })
 
 setup_custom_ts_moves({
   ["f"] = { "@debel.func", "function definition" },

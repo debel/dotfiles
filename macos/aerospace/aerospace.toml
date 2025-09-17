@@ -45,7 +45,7 @@ key-mapping.preset = 'qwerty'
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
@@ -132,10 +132,15 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-alt-q = 'workspace q'
-alt-w = 'workspace w'
-alt-e = 'workspace e'
-alt-p = 'workspace p'
+alt-a = 'workspace a'
+alt-s = 'workspace s'
+alt-d = 'workspace d'
+alt-z = 'workspace z'
+alt-x = 'workspace x'
+alt-c = 'workspace c'
+
+cmd-shift-h = 'workspace prev'
+cmd-shift-l = 'workspace next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -147,10 +152,12 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-q = 'move-node-to-workspace q'
-alt-shift-w = 'move-node-to-workspace w'
-alt-shift-e = 'move-node-to-workspace e'
-alt-shift-p = 'move-node-to-workspace p'
+alt-shift-a = 'move-node-to-workspace a'
+alt-shift-s = 'move-node-to-workspace s'
+alt-shift-d = 'move-node-to-workspace d'
+alt-shift-z = 'move-node-to-workspace z'
+alt-shift-x = 'move-node-to-workspace x'
+alt-shift-c = 'move-node-to-workspace c'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
