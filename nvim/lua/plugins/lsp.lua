@@ -19,19 +19,13 @@ return {
         "markdownlint-cli2",
         "marksman",
         "shfmt",
-        "sqlfluff",
-        "sqlfmt",
         "stylua",
         "swiftlint",
         "taplo",
         "templ",
-        "terraform-ls",
-        "tflint",
         "vtsls",
         "yaml-language-server",
         "zls",
-        "bash-language-server",
-        "shellcheck",
       },
       ui = {
         border = "rounded",
@@ -46,6 +40,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      settings = {
+        yaml = {
+          format = false,
+          schemas = {
+            ["https://raw.githubusercontent.com/sumup/fleet-kubernetes/refs/heads/main/charts/fleet-web-service/values.schema.json?token=GHSAT0AAAAAACXJGU6GANYI4CA5TFGM75UG2EZW6YA"] = "**/values.yaml",
+          },
+        },
+      },
       servers = {
         gopls = {
           settings = {
@@ -90,6 +92,14 @@ return {
             ["<cr>"] = "jump_close",
           },
         },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        sql = {},
       },
     },
   },

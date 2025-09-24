@@ -5,6 +5,7 @@
 
 local text_objects_move = require("nvim-treesitter-textobjects.move")
 
+-- custom tree-sitter movements
 local function setup_custom_ts_move(key, selector, desc)
   LazyVim.safe_keymap_set("n", "[" .. key, function()
     text_objects_move.goto_previous_start(selector, "textobjects")
@@ -21,7 +22,26 @@ local function setup_custom_ts_moves(moves)
   end
 end
 
+-- close all terminal, file explorere buffers
+local function close_none_file_bufs()
+  local fallback_buf = nil
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buftype == "terminal" or vim.bo[buf].filetype == "oil" then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    else
+      fallback_buf = buf
+    end
+  end
+
+  if fallback_buf ~= nil then
+    vim.api.nvim_set_current_buf(fallback_buf)
+  end
+end
+
 -- keymaps
+LazyVim.safe_keymap_set("n", "<leader>'", function() end, { desc = "Debelbot shortcuts" })
+
+vim.keymap.set("n", "q:", ":", { desc = "Use : instead of command history" })
 
 vim.keymap.set({ "n", "v" }, "x", '"_d', { desc = "delete without cutting" })
 vim.keymap.set("n", "xx", '"_dd', { desc = "delete line without cutting" })
@@ -31,11 +51,15 @@ LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list
 
 LazyVim.safe_keymap_set("n", "<leader>t", function()
   Snacks.terminal()
-end, { desc = "Toggle terminal" })
+end, { desc = "Toggle terminal (float)" })
 
-LazyVim.safe_keymap_set("n", "<leader>'", function()
-  LazyVim.pick("files", { no_ignore = true })()
-end, { desc = "Explore all files (including ignored)" })
+LazyVim.safe_keymap_set("n", "<leader>'t", "<cmd>botright 10split | terminal<cr>", { desc = "Toggle terminal (float)" })
+
+LazyVim.safe_keymap_set("n", "<leader>bt", "<cmd>terminal<cr>", { desc = "Toggle terminal (buffer)" })
+
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+LazyVim.safe_keymap_set("n", "<leader>bx", close_none_file_bufs, { desc = "Close all none-file buffers" })
 
 LazyVim.safe_keymap_set("n", "<leader>si", function()
   Snacks.picker.icons()

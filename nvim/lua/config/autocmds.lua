@@ -1,3 +1,25 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = { "*" },
+--   callback = function()
+--     vim.cmd("colorscheme tokyonight-night")
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = { "*.rb" },
+--   callback = function()
+--     vim.notify("Beware the LEGACY CODE...", vim.log.levels.WARN)
+--     vim.cmd("colorscheme slate")
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+--   pattern = { "*.rb" },
+--   callback = function()
+--     vim.notify("Writing RUBY is never a good idea...", vim.log.levels.WARN)
+--   end,
+-- })

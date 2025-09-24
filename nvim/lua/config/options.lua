@@ -1,7 +1,5 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
---
 
 vim.opt.clipboard = "unnamedplus"
 
@@ -21,6 +19,7 @@ local function set_filetype_highlights(filetype, highlights)
   })
 end
 
+-- enable highlighting on injected sql in json inside go
 set_filetype_highlights("go", {
   ["@keyword.sql"] = { bold = true, underline = true },
   ["@keyword.operator.sql"] = { bold = true },
