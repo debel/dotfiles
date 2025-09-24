@@ -1,0 +1,48 @@
+#waybar {
+  background: rgba(50, 50, 50, .7);
+  color : #ddd;
+  text-shadow: 3px 3px 3px black;
+  border: none;
+  font-family: 'BlexMono Nerd Font';
+}
+
+* {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#workspaces {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 0px;
+  padding-bottom: 2px;
+}
+
+#workspaces * {
+  padding: 0px;
+  margin: 0px;
+  padding-left: 3px;
+  padding-right: 0px;
+  margin-right: 2px;
+}
+
+#workspaces button {
+  color: #eee;
+  background: rgba(255, 255, 255, .5);
+}
+
+#workspaces button.active {
+  font-weight: bold;
+  color: black;
+  background: rgba(255, 255, 255, 1);
+}
+
+#clock {
+  padding-right: 1em;
+}
+
+.calendar {
+  background: rgb(255, 0, 0);
+}
