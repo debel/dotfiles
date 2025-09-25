@@ -30,32 +30,32 @@ return {
       },
     },
   },
-  {
-    "ibhagwan/fzf-lua",
-    opts = function(_, opts)
-      local actions = require("fzf-lua.actions")
-      return vim.tbl_deep_extend("force", opts, {
-        files = {
-          actions = {
-            ["ctrl-h"] = actions.toggle_hidden,
-            ["ctrl-i"] = actions.toggle_ignore,
-          },
-        },
-        grep = {
-          actions = {
-            ["ctrl-h"] = actions.toggle_hidden,
-            ["ctrl-i"] = actions.toggle_ignore,
-          },
-        },
-        diagnostics = {
-          actions = {
-            ["ctrl-h"] = actions.toggle_hidden,
-            ["ctrl-i"] = actions.toggle_ignore,
-          },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "ibhagwan/fzf-lua",
+  --   opts = function(_, opts)
+  --     local actions = require("fzf-lua.actions")
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       files = {
+  --         actions = {
+  --           ["ctrl-h"] = actions.toggle_hidden,
+  --           ["ctrl-i"] = actions.toggle_ignore,
+  --         },
+  --       },
+  --       grep = {
+  --         actions = {
+  --           ["ctrl-h"] = actions.toggle_hidden,
+  --           ["ctrl-i"] = actions.toggle_ignore,
+  --         },
+  --       },
+  --       diagnostics = {
+  --         actions = {
+  --           ["ctrl-h"] = actions.toggle_hidden,
+  --           ["ctrl-i"] = actions.toggle_ignore,
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "mfussenegger/nvim-lint",
     -- optional = true,

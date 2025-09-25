@@ -2,6 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 
 vim.opt.clipboard = "unnamedplus"
+vim.g.lazyvim_picker = "snacks"
 
 -- Create an autocommand group for filetype-specific highlights
 local augroup = vim.api.nvim_create_augroup("DebelGoHighlights", { clear = true })
