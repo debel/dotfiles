@@ -33,6 +33,9 @@ return {
         "bash-language-server",
         "shellcheck",
       },
+      ui = {
+        border = "rounded",
+      },
     },
   },
   {

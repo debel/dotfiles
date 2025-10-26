@@ -8,7 +8,7 @@
     "modules-left": ["hyprland/workspaces"],
     "modules-center": [],
     //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "clock", "tray"],
-    "modules-right": ["mpd", "idle_inhibitor", "temperature", "battery", "cpu", "memory", "bluetooth", "network", "pulseaudio", "backlight", "tray", "clock"],
+    "modules-right": ["hyprland/language", "mpd", "idle_inhibitor", "temperature", "battery", "cpu", "memory", "bluetooth", "network", "pulseaudio", "backlight", "tray", "clock"],
     // Modules configuration
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -18,9 +18,11 @@
             "default": ""
         }
     },
+    "hyprland/language": {
+        "format": "{short}",
+        "keyboard-name": "keebart-corne_choc_pro-keyboard"
+    },
     "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
         "format": "{name} {icon}",
         "format-icons": {
             "locked": "",

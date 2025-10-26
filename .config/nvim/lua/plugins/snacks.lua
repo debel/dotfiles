@@ -167,9 +167,6 @@ return {
           return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms\n\n\n\n" }
         end,
       },
-      keys = {
-        { "<leader>\\h", "<cmd>Dashboard<cr>", desc = "Open dashboard" },
-      },
     },
     terminal = {
       win = {
@@ -185,14 +182,30 @@ return {
         },
       },
     },
+    picker = {
+      win = {
+        input = {
+          keys = {
+            ["<C-h>"] = {
+              "toggle_hidden",
+              mode = { "n", "i" },
+            },
+            ["<C-i>"] = {
+              "toggle_ignored",
+              mode = { "n", "i" },
+            },
+          },
+        },
+      },
+    },
   },
   keys = {
     {
-      "<leader>\\h",
+      "<leader>;h",
       function()
         Snacks.dashboard()
       end,
-      desc = "Show home dashboard",
+      desc = "Show dashboard",
     },
   },
 }

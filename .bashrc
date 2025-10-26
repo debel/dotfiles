@@ -5,4 +5,4 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f ~/.shell-setup ]] && . ~/.shell-setup
+[[ -f ~/.shell-setup.sh ]] && . ~/.shell-setup.sh

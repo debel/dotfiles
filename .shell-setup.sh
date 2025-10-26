@@ -47,10 +47,20 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf --preview 'eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 {} | head -200'   "$@" ;;
-    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "if [[ -d {} ]]; then eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 --color=always {} ; else bat --color=always {} ; fi" "$@" ;;
+  cd) fzf --preview 'eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 {} | head -200' "$@" ;;
+  export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
+  ssh) fzf --preview 'dig {}' "$@" ;;
+  *) fzf --preview "if [[ -d {} ]]; then eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 --color=always {} ; else bat --color=always {} ; fi" "$@" ;;
   esac
 }
 
+if echo "$SHELL" | grep bash >/dev/null; then
+  shopt -s histappend
+
+  PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+  HISTSIZE=10000
+  HISTFILESIZE=20000
+
+  HISTCONTROL=ignoredups:erasedups
+fi

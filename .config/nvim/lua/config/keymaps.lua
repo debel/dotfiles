@@ -5,6 +5,7 @@
 
 local text_objects_move = require("nvim-treesitter-textobjects.move")
 
+-- custom tree-sitter movements helpers
 local function setup_custom_ts_move(key, selector, desc)
   LazyVim.safe_keymap_set("n", "[" .. key, function()
     text_objects_move.goto_previous_start(selector, "textobjects")
@@ -21,17 +22,45 @@ local function setup_custom_ts_moves(moves)
   end
 end
 
+-- close all terminal, file explorere buffers
+local function close_none_file_bufs()
+  local fallback_buf = nil
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buftype == "terminal" or vim.bo[buf].filetype == "oil" then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    else
+      fallback_buf = buf
+    end
+  end
+
+  if fallback_buf ~= nil then
+    vim.api.nvim_set_current_buf(fallback_buf)
+  end
+end
+
 -- keymaps
 
 vim.keymap.set({ "n", "v" }, "x", '"_d', { desc = "delete without cutting" })
 vim.keymap.set("n", "xx", '"_dd', { desc = "delete line without cutting" })
+vim.keymap.set({ "n", "v" }, "q:", ":", { desc = "command line" })
 
 LazyVim.safe_keymap_set("n", "[j", "<C-o>", { desc = "jump to next jump list location" })
 LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list location" })
 
 LazyVim.safe_keymap_set("n", "<leader>t", function()
   Snacks.terminal()
-end, { desc = "Toggle terminal" })
+end, { desc = "Toggle terminal (float)" })
+
+LazyVim.safe_keymap_set("n", "<leader>;t", "<cmd>botright 10split | terminal<cr>", {
+  desc = "Open terminal (bottom)",
+})
+
+LazyVim.safe_keymap_set("n", "<leader>bt", "<cmd>terminal<cr>", {
+  desc = "Open terminal (buffer)",
+})
+
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 LazyVim.safe_keymap_set("n", "<leader>'", function()
   LazyVim.pick("files", { no_ignore = true })()
@@ -45,12 +74,19 @@ LazyVim.safe_keymap_set("n", "B", function()
   require("gitsigns").blame_line({ full = false })
 end, { desc = "Show git blame tooltip for current line" })
 
-LazyVim.safe_keymap_set("n", "gm", function()
-  require("fzf-lua").lsp_live_workspace_symbols({
-    lsp_query = vim.fn.expand("<cword>"),
-    kind = "Method",
-  })
-end, { desc = "List methods belonging to given struct" })
+-- map diagnostic helpers to show errors only
+LazyVim.safe_keymap_set("n", "<leader>se", function()
+  Snacks.picker.diagnostics_buffer({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Search Errors in Document" })
+
+LazyVim.safe_keymap_set("n", "<leader>sE", function()
+  Snacks.picker.diagnostics({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Search Errors in Workspace" })
+
+-- map LSP symbol search (see ../plugins/lsp.lua)
+LazyVim.safe_keymap_set("n", "gS", "<cmd>Trouble lsp toggle<cr>", { desc = "Show lsp references" })
+
+LazyVim.safe_keymap_set("n", "<leader>bx", close_none_file_bufs, { desc = "Close all none-file buffers" })
 
 setup_custom_ts_moves({
   ["f"] = { "@debel.func", "function definition" },
@@ -70,4 +106,5 @@ setup_custom_ts_moves({
   [";n"] = { "@debel.note", "markdown note" },
   [";l"] = { "@debel.list", "markdown list" },
   [";c"] = { "@debel.codeblock", "markdown codeblock" },
+  [";h"] = { "@debel.heading", "markdown heading" },
 })

@@ -29,6 +29,32 @@ return {
       },
     },
   },
+  {
+    "folke/persistence.nvim",
+    opts = {
+      options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" },
+      pre_save = function()
+        -- Close all terminal, file explorere buffers before saving session
+        local fallback_buf = nil
+
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.bo[buf].buftype == "terminal" or vim.bo[buf].filetype == "oil" then
+            vim.api.nvim_buf_delete(buf, { force = true })
+          else
+            fallback_buf = buf
+          end
+        end
+
+        if fallback_buf ~= nil then
+          vim.api.nvim_set_current_buf(fallback_buf)
+        end
+      end,
+    },
+  },
+  {
+    "boxart.nvim",
+    dir = "~/.config/nvim/lua/boxart",
+  },
   -- {
   --   "nvzone/showkeys",
   --   cmd = "ShowkeysToggle",
