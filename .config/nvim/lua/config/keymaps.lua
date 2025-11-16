@@ -44,9 +44,12 @@ end
 vim.keymap.set({ "n", "v" }, "x", '"_d', { desc = "delete without cutting" })
 vim.keymap.set("n", "xx", '"_dd', { desc = "delete line without cutting" })
 vim.keymap.set({ "n", "v" }, "q:", ":", { desc = "command line" })
+vim.keymap.set("v", "r", '"_dP', { desc = "paste replace" })
 
 LazyVim.safe_keymap_set("n", "[j", "<C-o>", { desc = "jump to next jump list location" })
 LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list location" })
+
+LazyVim.safe_keymap_set("v", "r", '"_dP', { desc = "paste replace" })
 
 LazyVim.safe_keymap_set("n", "<leader>t", function()
   Snacks.terminal()

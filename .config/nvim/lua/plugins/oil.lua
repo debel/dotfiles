@@ -94,4 +94,9 @@ return {
       border = "rounded",
     },
   },
+  {
+    "stevearc/quicker.nvim",
+    ft = "qf",
+    opts = {},
+  },
 }

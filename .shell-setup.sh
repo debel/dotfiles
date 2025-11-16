@@ -32,6 +32,8 @@ eval "$(fzf --bash)"
 alias ls="eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level 1"
 alias ll="eza --all --absolute=on --icons --long --tree --level 1"
 alias dkr="debel-docker.sh"
+alias pods="debel-podman.sh"
+alias dx="distrobox"
 
 # fzf funcs
 _fzf_compgen_path() {

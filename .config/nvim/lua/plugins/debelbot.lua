@@ -51,19 +51,27 @@ return {
       end,
     },
   },
-  {
-    "boxart.nvim",
-    dir = "~/.config/nvim/lua/boxart",
-  },
   -- {
-  --   "nvzone/showkeys",
-  --   cmd = "ShowkeysToggle",
-  --   keys = {
-  --     {
-  --       "<leader>uk",
-  --       "<cmd>ShowkeysToggle<cr>",
-  --       desc = "Toggle Show [K]eys",
-  --     },
-  --   },
+  --   "boxart.nvim",
+  --   dir = "~/.config/nvim/lua/boxart",
   -- },
+  {
+    "nvzone/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+      winopts = {
+        border = "rounded",
+      },
+      position = "top-right",
+      show_count = true,
+      exclude_modes = { "i" },
+    },
+    keys = {
+      {
+        "<leader>uk",
+        "<cmd>ShowkeysToggle<cr>",
+        desc = "Toggle Show [K]eys",
+      },
+    },
+  },
 }

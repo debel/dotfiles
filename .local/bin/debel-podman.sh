@@ -23,6 +23,13 @@ __podman_rm() {
     xargs podman rm
 }
 
+__podman_repl() {
+  podman ps "$@" --format '{{ .ID }} {{ .State }}\t{{ .Names }}\t{{ .Image }}' |
+    fzf --ansi --reverse --preview 'podman inspect {1}' |
+    cut -d' ' -f 1 |
+    xargs -I {} podman exec -it {} /bin/bash
+}
+
 command=$1
 shift 1
 
@@ -31,5 +38,6 @@ ps) __podman_ps "$@" ;;
 logs) __podman_logs "$@" ;;
 kill) __podman_kill "$@" ;;
 rm) __podman_rm "$@" ;;
-*) echo "supported commands are ps | logs | kill" ;;
+repl) __podman_repl "$@" ;;
+*) echo "supported commands are ps | logs | repl | kill | rm" ;;
 esac

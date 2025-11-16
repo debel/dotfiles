@@ -45,9 +45,15 @@ return {
         gopls = {
           settings = {
             gopls = {
-              buildFlags = { "-tags=test unit integration mage" },
+              buildFlags = { "-tags=test unit integration" },
               codelenses = {
                 gc_details = true,
+                generate = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
               },
             },
           },
@@ -90,5 +96,8 @@ return {
         },
       },
     },
+  },
+  {
+    "nvim-neotest/neotest",
   },
 }
