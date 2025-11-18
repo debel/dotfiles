@@ -1,0 +1,51 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "H": "pane::ActivatePreviousItem",
+      "L": "pane::ActivateNextItem",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "space /": "pane::DeploySearch",
+      "space t": "workspace::NewTerminal",
+      "space b t": "workspace::NewCenterTerminal",
+      "space b d": "pane::CloseActiveItem",
+      "space e": "workspace::ToggleLeftDock",
+      "space g": "workspace::ToggleRightDock",
+      "space f n": "workspace::NewFile",
+      "space space": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "H": "pane::ActivatePreviousItem",
+      "L": "pane::ActivateNextItem",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "space /": "pane::DeploySearch",
+      "space t": "workspace::NewTerminal",
+      "space b t": "workspace::NewCenterTerminal",
+      "space b d": "pane::CloseActiveItem",
+      "space e": "workspace::ToggleLeftDock",
+      "space g": "workspace::ToggleRightDock",
+      "space f n": "workspace::NewFile",
+      "space space": "file_finder::Toggle"
+    }
+  }
+]
