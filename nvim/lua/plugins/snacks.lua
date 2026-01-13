@@ -1,4 +1,5 @@
-local logo1 = [[
+local logos = {
+  [[
       eoim  ─────────────────────────────────────────────────────────────┐
       │                                                                     │
       │  ██████╗ ███████╗██████╗ ███████╗██╗     ██████╗  ██████╗ ████████╗ │
@@ -9,9 +10,8 @@ local logo1 = [[
       │  ╚═════╝ ╚══════╝╚═════╝ ╚══════╝╚══════╝╚═════╝  ╚═════╝    ╚═╝    │
       │             mihail.mikov@sumup.com | Verification Squad             │
       └─────────────────────────────────────────────────────────────────────┘
-]]
-
-local logo2 = [[
+  ]],
+  [[
            █████          █████              ████  █████               █████   
           ░░███          ░░███              ░░███ ░░███               ░░███    
         ███████   ██████  ░███████   ██████  ░███  ░███████   ██████  ███████  
@@ -21,9 +21,8 @@ local logo2 = [[
       ░░████████░░██████  ████████ ░░██████  █████ ████████ ░░██████   ░░█████ 
        ░░░░░░░░  ░░░░░░  ░░░░░░░░   ░░░░░░  ░░░░░ ░░░░░░░░   ░░░░░░     ░░░░░  
                           ■ grug brain with skill issues ■                     
-]]
-
-local logo3 = [[
+  ]],
+  [[
             \           \                 \ \                  \     
              |           |                 | |                  |    
         | \  \   \   |\   \ \   
@@ -32,33 +31,42 @@ local logo3 = [[
        |   |   ____| |   |   ____| | |   | |   |  |\ 
       \ |\\   |\\  |  |\  | \  |
        \_______| \_______|\_______/  \_______|\__|\_______/  \______/   \____/ 
-                    Verification Squad @ Sumup | Stay compliant!               
-]]
-
-local logo4 = [[
+                       Verification Squad @ Sumup | Stay compliant!            
+  ]],
+  [[
                       
                                          
                                  
                                          
                       
-                              eovim, btw                        
-]]
-
-local logo5 = [[
-                                                             
-                                                             
-                                                             
-       .  ..  .   ..     .   ..  
-                                           
-                                   
-                                         
-       '    '        '   ''   '
-                     ...make bugs, fix bugs; is fine...                
-]]
+                                eovim, btw                      
+  ]],
+  [[
+    ████████▄   ▄████████ ████████▄   ▄█████████ ▄█    ████████▄   ▄██████▄ ▀███████▀
+    ███   ▀███ ███    ███ ███    ███ ███    ██▀ ▄██  n  ███    ███ ███    ███   ███   
+    ███    ███ ███        ███    ███ ███        ███  v  ███    ███ ███    ███   ███   
+    ███    ███ ███▄▄▄     ███▄▄▄██▀  ███▄▄▄     ███  i  ███▄▄▄██▀  ███    ███   ███   
+    ███    ███ ███▀▀▀     ███▀▀▀██▄  ███▀▀▀     ███  m  ███▀▀▀██▄  ███    ███   ███   
+    ███    ███ ███        ███    ██▄ ███        ███    ███    ██▄ ███    ███   ███   
+    ███   ▄███ ███    ███ ███    ███ ███    ███ ███▌    ███    ███ ███    ███   ███   
+    ████████▀  ██████████ ████████▀  ██████████ ███████ ████████▀   ▀██████▀    ███   
+                            ...make bugs, fix bugs; is fine...                     
+  ]],
+  [[
+    ████████████████████████████████████████████████████████████████████████
+    ███████  ████████████  ██████████████████  ██  ███████████████████  ████
+    ██       ███      ███       ████      ███  ██       ████      ██       █
+    █  ████  ██        ██  ████  ██        ██  ██  ████  ██  ████  ███  ████
+    █  ████  ██  ████████  ████  ██  ████████  ██  ████  ██  ████  ███  ████
+    ██       ███       ██       ████       ██  ██       ████      █████    █
+    ████████████████████████████████████████████████████████████████████████
+    █████████████████████████ spaghetti code - yum yum █████████████████████
+  ]],
+}
 
 math.randomseed(os.time())
-local logos = { logo1, logo2, logo3, logo4, logo5 }
-local logo = logos[math.random(#logos)]
+-- local project = "\n󰛂 " .. vim.fn.getcwd(0):match("([^/]+)$") .. " 󰛁"
+local logo = string.gsub(logos[math.random(#logos)], "^\n$", "") -- .. project
 
 return {
   "folke/snacks.nvim",
@@ -79,29 +87,29 @@ return {
             icon = "",
             key = "n",
           },
-          {
-            action = ':lua LazyVim.pick("oldfiles")()',
-            desc = " Recent Files",
-            icon = "󰪶",
-            key = "r",
-          },
+          -- {
+          --   action = ':lua LazyVim.pick("oldfiles")()',
+          --   desc = " Recent Files",
+          --   icon = "󰪶",
+          --   key = "r",
+          -- },
           {
             action = ':lua require("oil").toggle_float()',
             desc = " Explore Files",
             icon = "󰪶",
             key = "o",
           },
-          {
-            action = ":lua Snacks.terminal()",
-            desc = " Open Terminal",
-            icon = "",
-            key = "t",
-          },
+          -- {
+          --   action = ":lua Snacks.terminal()",
+          --   desc = " Open Terminal",
+          --   icon = "",
+          --   key = "t",
+          -- },
           {
             action = ':lua LazyVim.pick("live_grep")()',
             desc = " Grep Text",
             icon = "󱘣",
-            key = "g",
+            key = "/",
           },
           {
             action = ":lua LazyVim.pick.config_files()()",
@@ -116,16 +124,22 @@ return {
             key = "s",
           },
           {
-            action = "<cmd>LazyExtras<cr>",
-            desc = " Lazy Extras",
-            icon = "󰇳",
-            key = "x",
-          },
-          {
             action = "<cmd>Lazy<cr>",
             desc = " Lazy",
             icon = "󰒲",
             key = "l",
+          },
+          {
+            action = "<cmd>Mason<cr>",
+            desc = " Mason",
+            icon = "",
+            key = "m",
+          },
+          {
+            action = "<cmd>LazyExtras<cr>",
+            desc = " Lazy Extras",
+            icon = "󰇳",
+            key = "x",
           },
           {
             action = function()
@@ -139,19 +153,30 @@ return {
         footer = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms\n\n\n\n" }
+          return { "\n\n⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms\n" }
         end,
       },
-      -- sections = {
-      --   { section = "startup", padding = 0 },
-      --   { section = "header", padding = 0 },
-      --   {
-      --     section = "terminal",
-      --     cmd = 'echo -e "Project: \\e[36m$(basename $(pwd))\\e[0m\n" && git jlg',
-      --     width = 150,
-      --     align = "center",
-      --   },
-      -- },
+      sections = {
+        {
+          section = "header",
+          padding = 0,
+          gap = 0,
+        },
+        -- {
+        --   section = "terminal",
+        --   cmd = 'echo -e "Project: \\e[36m$(basename $(pwd))\\e[0m\n"',
+        --   padding = 0,
+        --   height = 2,
+        --   gap = 0,
+        --   -- width = 55,
+        --   align = "center",
+        -- },
+        { section = "keys", gap = 1, padding = 1 },
+        { section = "startup", padding = 1 },
+      },
+      formats = {
+        header = {},
+      },
     },
     terminal = {
       win = {
@@ -169,6 +194,11 @@ return {
     },
     picker = {
       win = {
+        preview = {
+          wo = {
+            wrap = true,
+          },
+        },
         input = {
           keys = {
             ["<C-h>"] = {
@@ -186,7 +216,7 @@ return {
   },
   keys = {
     {
-      "<leader>'h",
+      "<leader>;h",
       function()
         Snacks.dashboard()
       end,

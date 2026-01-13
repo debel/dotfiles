@@ -39,12 +39,13 @@ local function close_none_file_bufs()
 end
 
 -- keymaps
-LazyVim.safe_keymap_set("n", "<leader>'", function() end, { desc = "Debelbot shortcuts" })
+LazyVim.safe_keymap_set("n", "<leader>;", function() end, { desc = "Debelbot shortcuts" })
 
-vim.keymap.set("n", "q:", ":", { desc = "Use : instead of command history" })
+vim.keymap.set("n", "q:", ":", { desc = "Command Prompt" })
 
 vim.keymap.set({ "n", "v" }, "x", '"_d', { desc = "delete without cutting" })
 vim.keymap.set("n", "xx", '"_dd', { desc = "delete line without cutting" })
+LazyVim.safe_keymap_set("v", "r", '"_dP', { desc = "Paste replace" })
 
 LazyVim.safe_keymap_set("n", "[j", "<C-o>", { desc = "jump to next jump list location" })
 LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list location" })
@@ -53,7 +54,8 @@ LazyVim.safe_keymap_set("n", "<leader>t", function()
   Snacks.terminal()
 end, { desc = "Toggle terminal (float)" })
 
-LazyVim.safe_keymap_set("n", "<leader>'t", "<cmd>botright 10split | terminal<cr>", { desc = "Toggle terminal (float)" })
+LazyVim.safe_keymap_set("n", "<leader>;t", "<cmd>botright 10split | terminal<cr>", { desc = "Open terminal (bottom)" })
+LazyVim.safe_keymap_set("n", "<leader>;o", "<cmd>Oil<cr>", { desc = "Open Oil (buffer)" })
 
 LazyVim.safe_keymap_set("n", "<leader>bt", "<cmd>terminal<cr>", { desc = "Toggle terminal (buffer)" })
 
@@ -71,15 +73,17 @@ end, { desc = "Show git blame tooltip for current line" })
 
 -- map diagnostic helpers to show errors only
 LazyVim.safe_keymap_set("n", "<leader>se", function()
-  require("fzf-lua").diagnostics_document({ severity_only = true, severity_limit = vim.diagnostic.severity.ERROR })
+  Snacks.picker.diagnostics_buffer({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Search Errors in Document" })
 
 LazyVim.safe_keymap_set("n", "<leader>sE", function()
-  require("fzf-lua").diagnostics_workspace({ severity_only = true, severity_limit = vim.diagnostic.severity.ERROR })
+  Snacks.picker.diagnostics({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Search Errors in Workspace" })
 
 -- map LSP symbol search (see ../plugins/lsp.lua)
 LazyVim.safe_keymap_set("n", "gS", "<cmd>Trouble lsp toggle<cr>", { desc = "Show lsp references" })
+
+LazyVim.safe_keymap_set("n", "D", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "Inline hunk diff" })
 
 setup_custom_ts_moves({
   ["f"] = { "@debel.func", "function definition" },
@@ -99,4 +103,5 @@ setup_custom_ts_moves({
   [";n"] = { "@debel.note", "markdown note" },
   [";l"] = { "@debel.list", "markdown list" },
   [";c"] = { "@debel.codeblock", "markdown codeblock" },
+  [";h"] = { "@debel.heading", "markdown heading" },
 })

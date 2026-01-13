@@ -21,7 +21,7 @@ return {
         SUGGESTION = {
           icon = "󰛨 ",
           color = "#ffc0cb",
-          alt = { "IDEA", "RFC" },
+          alt = { "IDEA", "RFC", "PLAN" },
         },
         go = {
           icon = " ",

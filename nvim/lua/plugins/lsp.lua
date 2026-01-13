@@ -20,7 +20,6 @@ return {
         "marksman",
         "shfmt",
         "stylua",
-        "swiftlint",
         "taplo",
         "templ",
         "vtsls",

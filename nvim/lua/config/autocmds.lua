@@ -23,3 +23,44 @@
 --     vim.notify("Writing RUBY is never a good idea...", vim.log.levels.WARN)
 --   end,
 -- })
+
+-- local function git_changes_picker()
+--   -- Get all changed files
+--   local files = vim.fn.systemlist("git diff --name-only HEAD")
+--
+--   if vim.v.shell_error ~= 0 then
+--     vim.notify("Not in a git repo or git error", vim.log.levels.ERROR)
+--     return
+--   end
+--
+--   -- Get hunks for each file
+--   local items = {}
+--   for _, file in ipairs(files) do
+--     local hunks = vim.fn.systemlist(string.format('git diff -U0 HEAD -- %s | grep "^@@"', vim.fn.shellescape(file)))
+--
+--     for _, hunk in ipairs(hunks) do
+--       -- Parse @@ -old +new @@ format
+--       local line_num = hunk:match("%+(%d+)")
+--       if line_num then
+--         table.insert(items, {
+--           file = file,
+--           line = tonumber(line_num),
+--           text = string.format("%s:%s", file, line_num),
+--         })
+--       end
+--     end
+--   end
+--
+--   require("snacks").picker.pick({
+--     items = items,
+--     format = function(item)
+--       return item.text
+--     end,
+--     confirm = function(item)
+--       vim.cmd.edit(item.file)
+--       vim.api.nvim_win_set_cursor(0, { item.line, 0 })
+--     end,
+--   })
+-- end
+--
+-- vim.keymap.set("n", "<leader>gc", git_changes_picker)
