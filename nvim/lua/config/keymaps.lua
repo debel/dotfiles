@@ -39,52 +39,65 @@ local function close_none_file_bufs()
 end
 
 -- keymaps
-LazyVim.safe_keymap_set("n", "<leader>;", function() end, { desc = "Debelbot shortcuts" })
-
+-- disables and fixes
 vim.keymap.set("n", "q:", ":", { desc = "Command Prompt" })
 
+-- editing fixes
 vim.keymap.set({ "n", "v" }, "x", '"_d', { desc = "delete without cutting" })
 vim.keymap.set("n", "xx", '"_dd', { desc = "delete line without cutting" })
 LazyVim.safe_keymap_set("v", "r", '"_dP', { desc = "Paste replace" })
 
-LazyVim.safe_keymap_set("n", "[j", "<C-o>", { desc = "jump to next jump list location" })
-LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list location" })
-
-LazyVim.safe_keymap_set("n", "<leader>t", function()
-  Snacks.terminal()
-end, { desc = "Toggle terminal (float)" })
-
+-- personal keymap namespace
+LazyVim.safe_keymap_set("n", "<leader>;", function() end, { desc = "Debelbot shortcuts" })
 LazyVim.safe_keymap_set("n", "<leader>;t", "<cmd>botright 10split | terminal<cr>", { desc = "Open terminal (bottom)" })
 LazyVim.safe_keymap_set("n", "<leader>;o", "<cmd>Oil<cr>", { desc = "Open Oil (buffer)" })
 
-LazyVim.safe_keymap_set("n", "<leader>bt", "<cmd>terminal<cr>", { desc = "Toggle terminal (buffer)" })
+-- navigation
+LazyVim.safe_keymap_set("n", "[j", "<C-o>", { desc = "jump to next jump list location" })
+LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list location" })
 
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- useful shortcuts
+vim.keymap.set("n", "<C-d>", function()
+  vim.diagnostic.open_float()
+end, { desc = "show diagnostics under cursor" })
 
-LazyVim.safe_keymap_set("n", "<leader>bx", close_none_file_bufs, { desc = "Close all none-file buffers" })
+LazyVim.safe_keymap_set("n", "B", function()
+  require("gitsigns").blame_line({ full = false })
+end, { desc = "Show git blame for current line" })
+
+LazyVim.safe_keymap_set("n", "D", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "Inline hunk diff" })
+
+LazyVim.safe_keymap_set("n", "<c-e>", function()
+  require("gitsigns").reset_hunk()
+end, { desc = "Revert current git hunk to original" })
 
 LazyVim.safe_keymap_set("n", "<leader>si", function()
   Snacks.picker.icons()
 end, { desc = "Show picker for emojis" })
 
-LazyVim.safe_keymap_set("n", "B", function()
-  require("gitsigns").blame_line({ full = false })
-end, { desc = "Show git blame tooltip for current line" })
+LazyVim.safe_keymap_set("n", "<leader>t", function()
+  Snacks.terminal()
+end, { desc = "Toggle terminal (float)" })
+
+-- terminal in vim
+LazyVim.safe_keymap_set("n", "<leader>bt", "<cmd>terminal<cr>", { desc = "Toggle terminal (buffer)" })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+LazyVim.safe_keymap_set("n", "<leader>bx", close_none_file_bufs, { desc = "Close all none-file buffers" })
 
 -- map diagnostic helpers to show errors only
-LazyVim.safe_keymap_set("n", "<leader>se", function()
+LazyVim.safe_keymap_set("n", "<leader>sE", function()
   Snacks.picker.diagnostics_buffer({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Search Errors in Document" })
 
-LazyVim.safe_keymap_set("n", "<leader>sE", function()
+LazyVim.safe_keymap_set("n", "<leader>se", function()
   Snacks.picker.diagnostics({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Search Errors in Workspace" })
 
 -- map LSP symbol search (see ../plugins/lsp.lua)
 LazyVim.safe_keymap_set("n", "gS", "<cmd>Trouble lsp toggle<cr>", { desc = "Show lsp references" })
 
-LazyVim.safe_keymap_set("n", "D", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "Inline hunk diff" })
-
+-- custom tree-sitter movements
 setup_custom_ts_moves({
   ["f"] = { "@debel.func", "function definition" },
   ["gt"] = { "@debel.type", "type definition" },

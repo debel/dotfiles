@@ -39,14 +39,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      settings = {
-        yaml = {
-          format = false,
-          schemas = {
-            ["https://raw.githubusercontent.com/sumup/fleet-kubernetes/refs/heads/main/charts/fleet-web-service/values.schema.json?token=GHSAT0AAAAAACXJGU6GANYI4CA5TFGM75UG2EZW6YA"] = "**/values.yaml",
-          },
-        },
-      },
       servers = {
         gopls = {
           settings = {

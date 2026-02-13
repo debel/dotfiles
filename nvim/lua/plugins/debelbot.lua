@@ -4,6 +4,15 @@ return {
     enabled = false,
   },
   {
+    "folke/which-key.nvim",
+    opts = {
+      keys = {
+        scroll_down = "<c-j>",
+        scroll_up = "<c-k>",
+      },
+    },
+  },
+  {
     "folke/todo-comments.nvim",
     opts = {
       priority = 10,
@@ -22,6 +31,10 @@ return {
           icon = "󰛨 ",
           color = "#ffc0cb",
           alt = { "IDEA", "RFC", "PLAN" },
+        },
+        WIP = {
+          icon = " ",
+          color = "#cc7722",
         },
         go = {
           icon = " ",
