@@ -22,7 +22,6 @@ return {
         "sqlfluff",
         "sqlfmt",
         "stylua",
-        "swiftlint",
         "taplo",
         "templ",
         "terraform-ls",

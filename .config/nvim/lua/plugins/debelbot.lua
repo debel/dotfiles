@@ -4,6 +4,15 @@ return {
     enabled = false,
   },
   {
+    "folke/which-key.nvim",
+    opts = {
+      keys = {
+        scroll_down = "<c-j>",
+        scroll_up = "<c-k>",
+      },
+    },
+  },
+  {
     "folke/todo-comments.nvim",
     opts = {
       keywords = {

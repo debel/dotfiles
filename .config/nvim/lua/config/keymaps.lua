@@ -65,24 +65,30 @@ LazyVim.safe_keymap_set("n", "<leader>bt", "<cmd>terminal<cr>", {
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-LazyVim.safe_keymap_set("n", "<leader>'", function()
-  LazyVim.pick("files", { no_ignore = true })()
-end, { desc = "Explore all files (including ignored)" })
-
 LazyVim.safe_keymap_set("n", "<leader>si", function()
   Snacks.picker.icons()
 end, { desc = "Show picker for emojis" })
+
+vim.keymap.set("n", "<C-d>", function()
+  vim.diagnostic.open_float()
+end, { desc = "show diagnostics under cursor" })
 
 LazyVim.safe_keymap_set("n", "B", function()
   require("gitsigns").blame_line({ full = false })
 end, { desc = "Show git blame tooltip for current line" })
 
+LazyVim.safe_keymap_set("n", "D", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "Inline hunk diff" })
+
+LazyVim.safe_keymap_set("n", "<c-e>", function()
+  require("gitsigns").reset_hunk()
+end, { desc = "Revert current git hunk to original" })
+
 -- map diagnostic helpers to show errors only
-LazyVim.safe_keymap_set("n", "<leader>se", function()
+LazyVim.safe_keymap_set("n", "<leader>sE", function()
   Snacks.picker.diagnostics_buffer({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Search Errors in Document" })
 
-LazyVim.safe_keymap_set("n", "<leader>sE", function()
+LazyVim.safe_keymap_set("n", "<leader>se", function()
   Snacks.picker.diagnostics({ severity = vim.diagnostic.severity.ERROR })
 end, { desc = "Search Errors in Workspace" })
 
