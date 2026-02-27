@@ -17,7 +17,9 @@ export GPG_TTY=$(tty)
 ## fzf vars
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_COMPLETION_TRIGGER="~~"
-export FZF_DEFAULT_OPTS='--preview "if [[ -d {} ]]; then eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 {} ; else bat --color=always {} ; fi"'
+fzf_preview='--preview "if [[ -d {} ]]; then eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 {} ; else bat --color=always {} ; fi"'
+fzf_scroll='--bind=ctrl-down:preview-down,ctrl-up:preview-up'
+export FZF_DEFAULT_OPTS="$fzf_preview $fzf_scroll"
 export FZF_CTRL_R_OPTS="--height 50% --reverse --preview 'echo {}' --preview-window 'hidden'"
 
 # local bin
@@ -34,6 +36,7 @@ alias ll="eza --all --absolute=on --icons --long --tree --level 1"
 alias dkr="debel-docker.sh"
 alias pods="debel-podman.sh"
 alias dx="distrobox"
+alias tmx="debel-tmux-session-picker.sh"
 
 # fzf funcs
 _fzf_compgen_path() {

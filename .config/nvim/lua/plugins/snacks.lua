@@ -218,6 +218,8 @@ return {
               "toggle_ignored",
               mode = { "n", "i" },
             },
+            ["<C-Down>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<C-Up>"] = { "preview_scroll_up", mode = { "i", "n" } },
           },
         },
       },
