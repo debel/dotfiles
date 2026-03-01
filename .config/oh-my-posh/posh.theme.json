@@ -13,18 +13,9 @@
       "segments": [
         {
           "options": {
-            "time_format": "15:04"
-          },
-          "template": "[{{ .CurrentDate | date .Format }}]",
-          "foreground": "#E5C07B",
-          "type": "time",
-          "style": "plain"
-        },
-        {
-          "options": {
             "style": "full"
           },
-          "template": " \ue5ff {{ .Path }}",
+          "template": " \ue5ff {{ .HostName }}:{{ .Path }}",
           "foreground": "#61AFEF",
           "type": "path",
           "style": "plain"
@@ -75,6 +66,15 @@
           "foreground_templates": [
             "{{ if gt .Code 0 }}#E06C75{{ end }}"
           ]
+        },
+        {
+          "options": {
+            "time_format": "15:04"
+          },
+          "template": "[{{ .CurrentDate | date .Format }}]",
+          "foreground": "#E5C07B",
+          "type": "time",
+          "style": "plain"
         }
       ]
     },

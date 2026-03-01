@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 if [ -v TMUX ]; then
-  tmux choose-tree -s
+  tmux choose-session -s
 else
   selected=$(
     sessions=$(tmux ls -F '#{session_name}' 2>/dev/null)
