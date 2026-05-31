@@ -18,7 +18,7 @@ export GPG_TTY=$(tty)
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_COMPLETION_TRIGGER="~~"
 fzf_preview='--preview "if [[ -d {} ]]; then eza --long --no-user --no-permissions --no-filesize --no-time --icons --tree --level=1 {} ; else bat --color=always {} ; fi"'
-fzf_scroll='--bind=ctrl-down:preview-down,ctrl-up:preview-up'
+fzf_scroll='--bind=ctrl-down:preview-down,ctrl-up:preview-up,ctrl-page-down:preview-page-down,ctrl-page-up:preview-page-up'
 export FZF_DEFAULT_OPTS="$fzf_preview $fzf_scroll"
 export FZF_CTRL_R_OPTS="--height 50% --reverse --preview 'echo {}' --preview-window 'hidden'"
 

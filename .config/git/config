@@ -2,6 +2,7 @@
   lg = !sh debel-git-log.sh "$@"
   br = !sh debel-git-branch.sh "$@"
   cb = !sh debel-git-branch.sh "$@" | xargs git switch
+  df = !sh debel-git-diff.sh "$@"
 	st = status --short --branch
 	co = checkout
 	sl = stash list
