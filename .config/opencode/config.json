@@ -1,0 +1,50 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qw4": {},
+        "phi-6k": {},
+        "l3-6k": {},
+        "granite4": {},
+        "g4-8k": {},
+        "granite-coder": {},
+        "qwen2.5-16k": {},
+        "ministral-coder": {},
+        "gpt-16k": {},
+        "gpt-oss": {},
+        "qwen3-fast-coder": {},
+        "mistral-16k": {}
+      }
+    },
+    "macllama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://192.168.0.3:11434/v1"
+      },
+      "models": {
+        "gpt-120": {},
+        "glm-30": {},
+        "qwen3-next-coder": {},
+        "qwen3-122": {},
+        "qwen3.6": {},
+        "nemotron": {}
+      }
+    },
+    "vllm-mlx": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://192.168.0.3:5588/v1"
+      },
+      "models": {
+        "mlx-community/Qwen3.6-35B-A3B-nvfp4": {},
+        "mlx-community/Qwen3-Coder-Next-4bit": {}
+      }
+    }
+  }
+}

@@ -138,7 +138,7 @@ return {
             action = ':lua LazyVim.pick("live_grep")()',
             desc = " Grep",
             icon = "󱘣",
-            key = "g",
+            key = "/",
           },
           {
             action = ":lua Snacks.terminal()",

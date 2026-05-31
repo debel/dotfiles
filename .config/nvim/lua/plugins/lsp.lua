@@ -44,7 +44,7 @@ return {
         gopls = {
           settings = {
             gopls = {
-              buildFlags = { "-tags=test unit integration" },
+              gofumpt = true,
               codelenses = {
                 gc_details = true,
                 generate = true,
@@ -54,9 +54,30 @@ return {
                 upgrade_dependency = true,
                 vendor = true,
               },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantTypes = true,
+                functionTypeParameters = true,
+                paramterName = true,
+                rangeVariableTypes = true,
+              },
+              analyses = {
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
             },
           },
         },
+      },
+      setup = {
+        gopls = function() end,
       },
     },
   },

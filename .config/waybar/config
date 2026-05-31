@@ -1,6 +1,208 @@
 [
   {
-    "output": "!eDP-1",
+    "output": "DP-3",
+    "layer": "bottom",
+    "position": "bottom",
+    "spacing": 5,
+    "modules-left": [
+      "hyprland/workspaces"
+    ],
+    "modules-center": [
+      "hyprland/language",
+    ],
+    "modules-right": [
+      "temperature",
+      "battery",
+      "cpu",
+      "memory",
+      "bluetooth",
+      "network",
+      "custom/wg-status",
+      "pulseaudio",
+      "backlight",
+      "tray",
+      "clock"
+    ],
+    "hyprland/workspaces": {
+      "all-outputs": true,
+      "format": "{name} {icon}",
+      "format-icons": {
+        "active": "",
+        "default": ""
+      }
+    },
+    "hyprland/language": {
+      "format": "{short}",
+      "on-click-right": "hyprctl switchxkblayout all next"
+    },
+    "keyboard-state": {
+      "format": "{name} {icon}",
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "mpd": {
+      //        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+      "format": "  {title} - {artist} {stateIcon} [{elapsedTime:%M:%S}/{totalTime:%M:%S}] {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}[{songPosition}/{queueLength}] [{volume}%]",
+      "format-disconnected": " Disconnected",
+      "format-stopped": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+      "unknown-tag": "N/A",
+      "interval": 2,
+      "consume-icons": {
+        "on": " "
+      },
+      "random-icons": {
+        //            "off": "<span color=\"#f53c3c\"></span> ",
+        "on": " "
+      },
+      "repeat-icons": {
+        "on": " "
+      },
+      "single-icons": {
+        "on": "1 "
+      },
+      "state-icons": {
+        "paused": "",
+        "playing": ""
+      },
+      "tooltip-format": "MPD (connected)",
+      "tooltip-format-disconnected": "MPD (disconnected)",
+      "on-click": "mpc toggle",
+      // "on-click-right": "foot -a ncmpcpp ncmpcpp",
+      "on-scroll-up": "mpc volume +2",
+      "on-scroll-down": "mpc volume -2"
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "tray": {
+      "icon-size": 21,
+      "spacing": 4
+    },
+    "clock": {
+      "timezone": "Europe/Sofia",
+      "tooltip-format": "<big><tt>{calendar}</tt></big>",
+      "format": "{:L%Y-%m-%d <small>[%a]</small> %H:%M}"
+    },
+    "cpu": {
+      "format": " {usage}%",
+      "on-click-right": "kitty -e btop"
+    },
+    "memory": {
+      "format": " {}%",
+      "on-click-right": "kitty -e btop"
+    },
+    "temperature": {
+      "thermal-zone": 2,
+      "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+      "critical-threshold": 80,
+      "format-critical": "{icon} {temperatureC}°C",
+      "format": "{icon} {temperatureC}°C",
+      "format-icons": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "backlight": {
+      "format": "{icon} {percent}%",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "battery": {
+      "bat": "BAT0",
+      "states": {
+        "full": 100,
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "battery#bat2": {
+      "bat": "BAT2"
+    },
+    "network": {
+      "format-wifi": "  {essid} ({signalStrength}%)",
+      "format-ethernet": "󰈁 {ifname}",
+      "tooltip-format": "󰛳 {ifname} via {gwaddr}",
+      "format-linked": "󰛳 {ifname} (No IP)",
+      "format-disconnected": "Disconnected ⚠ {ifname}",
+      "format-alt": "󰛳 {ifname}: {ipaddr}/{cidr}",
+      "on-click-right": "kitty -e impala"
+    },
+    "custom/wg-status": {
+      "exec": "ip -4 addr show wg0 2>/dev/null | grep -q 'inet ' && echo 'wg0:  up' || echo 'wg0:  down'",
+      "return-type": "string",
+      "tooltip": false,
+      "interval": 5
+    },
+    "bluetooth": {
+      "format": "\uf294 {status}",
+      "format-connected": "\uf294 {device_alias}",
+      "format-connected-battery": "\uf294 {device_alias} {device_battery_percentage}%",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+      "on-click-right": "kitty -e bluetuith"
+    },
+    "pulseaudio": {
+      "scroll-step": 5,
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": " {icon} {volume}% {format_source}",
+      "format-bluetooth-muted": "  {icon} {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": " ",
+      "format-icons": {
+        "default": [
+          " ",
+          " ",
+          "  "
+        ]
+      },
+      "on-click-right": "kitty -e wiremix"
+    },
+    "custom/media": {
+      "format": "{icon} {}",
+      "return-type": "json",
+      "max-length": 40,
+      "format-icons": {
+        "spotify": "",
+        "default": "🎜"
+      },
+      "escape": true,
+      "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+      // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+  },
+  {
+    "output": "DP-1",
     "layer": "bottom",
     "position": "bottom",
     //    "height": 26,
@@ -22,6 +224,7 @@
       "memory",
       "bluetooth",
       "network",
+      "custom/wg-status",
       "pulseaudio",
       "backlight",
       "tray",
@@ -160,6 +363,12 @@
       "format-alt": "󰛳 {ifname}: {ipaddr}/{cidr}",
       "on-click-right": "kitty -e impala"
     },
+    "custom/wg-status": {
+      "exec": "ip -4 addr show wg0 2>/dev/null | grep -q 'inet ' && echo 'wg0:  up' || echo 'wg0:  down'",
+      "return-type": "string",
+      "tooltip": false,
+      "interval": 5
+    },
     "bluetooth": {
       "format": "\uf294 {status}",
       "format-connected": "\uf294 {device_alias}",
@@ -216,8 +425,9 @@
       "battery",
       "bluetooth",
       "network",
+      "custom/wg-status",
       "pulseaudio",
-      "backlight",
+      "backlight"
     ],
     //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "clock", "tray"],
     "modules-right": [
@@ -395,6 +605,12 @@
       "escape": true,
       "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
       // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "custom/wg-status": {
+      "exec": "ip -4 addr show wg0 2>/dev/null | grep -q 'inet ' && echo '' || echo ''",
+      "return-type": "string",
+      "tooltip": false,
+      "interval": 5
+    },
   }
 ]

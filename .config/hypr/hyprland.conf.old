@@ -22,13 +22,17 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=,preferred,auto,auto
-# monitor=DP-1,preferred,auto,auto,mirror,eDP-1,bitdepth, 10, cm, hdr
-# monitor=HDMI-A-1,preferred,auto,auto,mirror,eDP-1,bitdepth, 10, cm, hdr
-monitor=HDMI-A-1,preferred,auto,auto,bitdepth, 10, cm, hdr
-monitor=DP-1,preferred,auto,auto,bitdepth, 10, cm, hdr
-# supports_wide_color = 1
-# supports_hdr = 1
+# SECONDARY extend
+# monitor=DP-1,preferred,auto,auto,bitdepth, 10, cm, hdr
+monitor=DP-3,preferred,auto,auto,bitdepth, 10, cm, hdr
+#
+# SECONDARY mirror
+# monitor=DP-1,preferred,auto,auto,mirror,eDP-1
+# monitor=DP-3,preferred,auto,auto,mirror,eDP-1
+
+# SECONDARY HDMI
+# monitor=HDMI-A-1,preferred,auto,auto,mirror,eDP-1
+# monitor=HDMI-A-1,preferred,auto,auto,bitdepth, 10, cm, hdr
 
 ###################
 ### MY PROGRAMS ###
@@ -281,13 +285,16 @@ bind = SUPER, q, killactive,
 bind = CTRL SUPER, L, exec, hyprlock & disown; systemctl suspend
 bind = SHIFT $mainMod, tab, movecurrentworkspacetomonitor, +1
 
+bind = $mainMod, slash, layoutmsg, setlayout monocle
+bind = $mainMod, dot, layoutmsg, setlayout dwindle
+
 bind = $mainMod, F11, exec, hyprctl switchxkblayout all next
 bind = SHIFT SUPER, 5, exec, hyprshot -m region
 # bind = $mainMod, M, exit,
 # bind = $mainMod, E, exec, $fileManager
 # bind = $mainMod, V, togglefloating,
 # bind = $mainMod, P, pseudo, # dwindle
-bind = $mainMod, comma, togglesplit, # dwindle
+# bind = $mainMod, comma, togglesplit, # dwindle
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
@@ -388,6 +395,10 @@ submap = reset
 ##############################
 ### WINDOWS AND WORKSPACES ###
 ##############################
+
+workspace = m[eDP-1], layout:scrolling
+workspace = m[DP-1], layout:dwindle
+workspace = m[DP-3], layout:dwindle
 
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules

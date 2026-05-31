@@ -15,7 +15,7 @@
           "options": {
             "style": "full"
           },
-          "template": " \ue5ff {{ .HostName }}:{{ .Path }}",
+          "template": "\ue5ff {{ .HostName }}:{{ .Path }}",
           "foreground": "#61AFEF",
           "type": "path",
           "style": "plain"
@@ -95,7 +95,7 @@
           "options": {
             "cache_duration": "none"
           },
-          "template": " ",
+          "template": "",
           "foreground": "#E06C75",
           "type": "text",
           "style": "plain"

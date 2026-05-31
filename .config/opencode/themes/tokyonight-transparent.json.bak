@@ -1,0 +1,229 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "tokyoNightBlack": "#1a1b26",
+    "tokyoNightBlue": "#7aa2f7",
+    "tokyoNightCyan": "#7dcfff",
+    "tokyoNightGreen": "#9ece6a",
+    "tokyoNightGrey": "#414868",
+    "tokyoNightMagenta": "#bb9af7",
+    "tokyoNightOrange": "#ff9e64",
+    "tokyoNightPurple": "#9d7cd8",
+    "tokyoNightRed": "#f7768e",
+    "tokyoNightWhite": "#c0caf5",
+    "tokyoNightYellow": "#e0af68",
+    "tokyoNight comment": "#565f89"
+  },
+  "theme": {
+    "primary": {
+      "dark": "tokyoNightBlue",
+      "light": "tokyoNightBlue"
+    },
+    "secondary": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "accent": {
+      "dark": "tokyoNightPurple",
+      "light": "tokyoNightPurple"
+    },
+    "error": {
+      "dark": "tokyoNightRed",
+      "light": "tokyoNightRed"
+    },
+    "warning": {
+      "dark": "tokyoNightOrange",
+      "light": "tokyoNightOrange"
+    },
+    "success": {
+      "dark": "tokyoNightGreen",
+      "light": "tokyoNightGreen"
+    },
+    "info": {
+      "dark": "tokyoNightCyan",
+      "light": "tokyoNightCyan"
+    },
+    "text": {
+      "dark": "tokyoNightWhite",
+      "light": "tokyoNightBlack"
+    },
+    "textMuted": {
+      "dark": "tokyoNight comment",
+      "light": "tokyoNightGrey"
+    },
+    "background": {
+      "dark": "rgba(26, 27, 38, 0.85)",
+      "light": "rgba(255, 255, 255, 0.85)"
+    },
+    "backgroundPanel": {
+      "dark": "rgba(26, 27, 38, 0.95)",
+      "light": "rgba(255, 255, 255, 0.95)"
+    },
+    "backgroundElement": {
+      "dark": "rgba(65, 72, 104, 0.95)",
+      "light": "#e0e0e0"
+    },
+    "border": {
+      "dark": "tokyoNightGrey",
+      "light": "#d0d0d0"
+    },
+    "borderActive": {
+      "dark": "tokyoNightBlue",
+      "light": "tokyoNightBlue"
+    },
+    "borderSubtle": {
+      "dark": "tokyoNightGrey",
+      "light": "#e0e0e0"
+    },
+    "diffAdded": {
+      "dark": "tokyoNightGreen",
+      "light": "tokyoNightGreen"
+    },
+    "diffRemoved": {
+      "dark": "tokyoNightRed",
+      "light": "tokyoNightRed"
+    },
+    "diffContext": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "diffHunkHeader": {
+      "dark": "tokyoNightPurple",
+      "light": "tokyoNightPurple"
+    },
+    "diffHighlightAdded": {
+      "dark": "tokyoNightGreen",
+      "light": "tokyoNightGreen"
+    },
+    "diffHighlightRemoved": {
+      "dark": "tokyoNightRed",
+      "light": "tokyoNightRed"
+    },
+    "diffAddedBg": {
+      "dark": "#162520",
+      "light": "#e6ffe6"
+    },
+    "diffRemovedBg": {
+      "dark": "#2a1620",
+      "light": "#ffe6e6"
+    },
+    "diffContextBg": {
+      "dark": "rgba(26, 27, 38, 0.95)",
+      "light": "rgba(255, 255, 255, 0.95)"
+    },
+    "diffLineNumber": {
+      "dark": "tokyoNightGrey",
+      "light": "#808080"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "#162520",
+      "light": "#e6ffe6"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "#2a1620",
+      "light": "#ffe6e6"
+    },
+    "markdownText": {
+      "dark": "tokyoNightWhite",
+      "light": "tokyoNightBlack"
+    },
+    "markdownHeading": {
+      "dark": "tokyoNightBlue",
+      "light": "tokyoNightBlue"
+    },
+    "markdownLink": {
+      "dark": "tokyoNightCyan",
+      "light": "tokyoNightCyan"
+    },
+    "markdownLinkText": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "markdownCode": {
+      "dark": "tokyoNightGreen",
+      "light": "tokyoNightGreen"
+    },
+    "markdownBlockQuote": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "markdownEmph": {
+      "dark": "tokyoNightOrange",
+      "light": "tokyoNightOrange"
+    },
+    "markdownStrong": {
+      "dark": "tokyoNightPurple",
+      "light": "tokyoNightPurple"
+    },
+    "markdownHorizontalRule": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "markdownListItem": {
+      "dark": "tokyoNightBlue",
+      "light": "tokyoNightBlue"
+    },
+    "markdownListEnumeration": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "markdownImage": {
+      "dark": "tokyoNightCyan",
+      "light": "tokyoNightCyan"
+    },
+    "markdownImageText": {
+      "dark": "tokyoNightGrey",
+      "light": "tokyoNightGrey"
+    },
+    "markdownCodeBlock": {
+      "dark": "rgba(65, 72, 104, 0.95)",
+      "light": "rgba(240, 240, 240, 0.95)"
+    },
+    "syntaxComment": {
+      "dark": "tokyoNight comment",
+      "light": "tokyoNight comment"
+    },
+    "syntaxKeyword": {
+      "dark": "tokyoNightMagenta",
+      "light": "tokyoNightMagenta"
+    },
+    "syntaxFunction": {
+      "dark": "tokyoNightBlue",
+      "light": "tokyoNightBlue"
+    },
+    "syntaxVariable": {
+      "dark": "tokyoNightCyan",
+      "light": "tokyoNightCyan"
+    },
+    "syntaxString": {
+      "dark": "tokyoNightGreen",
+      "light": "tokyoNightGreen"
+    },
+    "syntaxNumber": {
+      "dark": "tokyoNightOrange",
+      "light": "tokyoNightOrange"
+    },
+    "syntaxType": {
+      "dark": "tokyoNightPurple",
+      "light": "tokyoNightPurple"
+    },
+    "syntaxOperator": {
+      "dark": "tokyoNightMagenta",
+      "light": "tokyoNightMagenta"
+    },
+    "syntaxPunctuation": {
+      "dark": "tokyoNightWhite",
+      "light": "tokyoNightBlack"
+    }
+  },
+  "prompt": {
+    "background": {
+      "dark": "rgba(26, 27, 38, 0.95)",
+      "light": "rgba(255, 255, 255, 0.95)"
+    },
+    "border": {
+      "dark": "tokyoNightBlue",
+      "light": "tokyoNightGrey"
+    }
+  }
+}
