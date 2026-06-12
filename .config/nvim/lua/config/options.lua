@@ -8,6 +8,8 @@ vim.o.winborder = "rounded"
 vim.opt.clipboard = "unnamedplus"
 vim.g.lazyvim_picker = "snacks"
 
+vim.opt.termguicolors = true
+
 -- Create an autocommand group for filetype-specific highlights
 local augroup = vim.api.nvim_create_augroup("DebelGoHighlights", { clear = true })
 

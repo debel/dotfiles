@@ -7,11 +7,19 @@
 
 -- DP-3 with HDR and 10-bit color
 hl.monitor({
+	output = "eDP-1",
+	mode = "preferred",
+	position = "0x0",
+	scale = "auto",
+})
+
+-- DP-3 with HDR and 10-bit color
+hl.monitor({
 	output = "DP-3",
 	mode = "preferred",
 	-- mirror = "eDP-1",
-	-- position = "auto",
 	position = "-1920x-540", -- Kokalqne
+	-- position = "1440x-770", -- Bqlo Pole
 	scale = "auto",
 	bitdepth = 10,
 	cm = "hdr",
@@ -85,7 +93,6 @@ hl.config({
 	},
 
 	master = {
-		new_status = "master",
 		orientation = "right",
 	},
 
@@ -157,16 +164,12 @@ local function kb_alt(...)
 	return kb_helper("ALT", ...)
 end
 
-local function kb_alt_shift(...)
-	return kb_helper("SHIFT + ALT", ...)
-end
-
 local function kb_super(...)
 	return kb_helper("SUPER", ...)
 end
 
-local function kb_super_shift(...)
-	return kb_helper("SHIFT + SUPER", ...)
+local function kb_ctrl(...)
+	return kb_helper("CTRL", ...)
 end
 
 -- Terminal-aware copy/paste
@@ -216,25 +219,30 @@ hl.bind(kb_alt("return"), hl.dsp.exec_cmd(terminal))
 hl.bind(kb_alt("space"), hl.dsp.exec_cmd(menu))
 hl.bind(kb_alt("semicolon"), hl.dsp.exec_cmd(browser))
 hl.bind(kb_alt("f"), hl.dsp.window.fullscreen())
-hl.bind(kb_alt_shift("Tab"), function()
+hl.bind(kb_alt("SHIFT", "Tab"), function()
 	hl.dispatch(hl.dsp.workspace.move({ monitor = "+1" }))
 	hl.exec_cmd("hyprctl reload")
 end)
 hl.bind(kb_super("space"), hl.dsp.exec_cmd(menu))
 hl.bind(kb_super("q"), hl.dsp.window.close())
-hl.bind("CTRL + SUPER + l", hl.dsp.exec_cmd("hyprlock & disown && systemctl suspend"))
+hl.bind(kb_ctrl("SUPER", "l"), hl.dsp.exec_cmd("hyprlock & disown && systemctl suspend"))
 
 -- Keyboard layout & screenshot
 hl.bind(kb_alt("F11"), hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
-hl.bind(kb_super_shift("5"), hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(kb_super("SHIFT", "5"), hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Layout switching
-local layouts = { "dwindle", "scrolling", "monocle" }
+local layouts = { "dwindle", "scrolling", "master", "monocle" }
 
 local function cycle_layouts_helper(dir)
 	return function()
-		local monitor = hl.get_active_monitor().name
-		local layout = hl.get_active_workspace().tiled_layout
+		local workspace = hl.get_active_workspace()
+
+		if not workspace then
+			return
+		end
+
+		local layout = workspace.tiled_layout
 
 		local layout_index = 1
 		for i, l in ipairs(layouts) do
@@ -253,7 +261,7 @@ local function cycle_layouts_helper(dir)
 
 		local next_layout = layouts[next_index]
 
-		hl.workspace_rule({ workspace = "m[" .. monitor .. "]", layout = next_layout })
+		hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
 	end
 end
 
@@ -264,7 +272,7 @@ hl.bind(kb_alt("period"), cycle_layouts_helper("prev"))
 for i = 1, 10 do
 	local key = i % 10
 	hl.bind(kb_alt(key), hl.dsp.focus({ workspace = i }))
-	hl.bind(kb_alt_shift(key), hl.dsp.window.move({ workspace = i }))
+	hl.bind(kb_alt("SHIFT", key), hl.dsp.window.move({ workspace = i }))
 	hl.bind(kb_alt("SUPER", key), hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
@@ -304,12 +312,10 @@ local function focus_win_helper(opts)
 	return function()
 		local layout = hl.get_active_workspace().tiled_layout
 
-		if layout == "scrolling" or layout == "dwindle" then
-			hl.dispatch(hl.dsp.focus(opts.win_opts))
-		end
-
 		if layout == "monocle" then
 			hl.dispatch(hl.dsp.layout(opts.monocle_opts))
+		else
+			hl.dispatch(hl.dsp.focus(opts.win_opts))
 		end
 	end
 end
@@ -320,9 +326,7 @@ local function move_win_helper(opts)
 
 		if layout == "scrolling" or layout == "monocle" then
 			hl.dispatch(hl.dsp.window.swap(opts))
-		end
-
-		if layout == "dwindle" then
+		else
 			hl.dispatch(hl.dsp.window.move(opts))
 		end
 	end
@@ -331,8 +335,8 @@ end
 for _, dir in ipairs(directions) do
 	for _, key in ipairs(dir.keys) do
 		hl.bind(kb_alt(key), focus_win_helper(dir))
-		hl.bind(kb_alt_shift(key), move_win_helper(dir.win_opts))
-		hl.bind(kb_super_shift(key), hl.dsp.focus(dir.ws_opts))
+		hl.bind(kb_alt("SHIFT", key), move_win_helper(dir.win_opts))
+		hl.bind(kb_super("SHIFT", key), hl.dsp.focus(dir.ws_opts))
 	end
 end
 

@@ -156,7 +156,7 @@
       "on-click-right": "kitty -e impala"
     },
     "custom/wg-status": {
-      "exec": "ip -4 addr show wg0 2>/dev/null | grep -q 'inet ' && echo 'wg0:  up' || echo 'wg0:  down'",
+      "exec": "debel-wg.sh status",
       "return-type": "string",
       "tooltip": false,
       "interval": 5
@@ -413,10 +413,7 @@
     "output": "eDP-1",
     "layer": "bottom",
     "position": "bottom",
-    //    "height": 26,
-    // "width": 1280, // Waybar width
     "spacing": 10, // Gaps between modules (4px)
-    // Choose the order of the modules
     "modules-left": [
       "hyprland/workspaces"
     ],
@@ -429,7 +426,6 @@
       "pulseaudio",
       "backlight"
     ],
-    //"modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "clock", "tray"],
     "modules-right": [
       "tray",
       "clock"
@@ -604,13 +600,12 @@
       },
       "escape": true,
       "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-      // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/wg-status": {
-      "exec": "ip -4 addr show wg0 2>/dev/null | grep -q 'inet ' && echo '' || echo ''",
+      "exec": "debel-wg.sh status | cut -c 1-3",
       "return-type": "string",
       "tooltip": false,
       "interval": 5
-    },
+    }
   }
 ]

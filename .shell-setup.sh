@@ -23,7 +23,7 @@ export FZF_DEFAULT_OPTS="$fzf_preview $fzf_scroll"
 export FZF_CTRL_R_OPTS="--height 50% --reverse --preview 'echo {}' --preview-window 'hidden'"
 
 # local bin
-export PATH="$PATH:$HOME_DIR/.local/bin:$HOME_DIR/go/bin"
+export PATH="$PATH:$HOME_DIR/.local/bin:$HOME_DIR/go/bin:$HOME_DIR/.cargo/bin"
 
 # setup goodies
 eval "$(oh-my-posh init bash --config $HOME_DIR/.config/oh-my-posh/posh.theme.json)"
@@ -37,6 +37,7 @@ alias dkr="debel-docker.sh"
 alias pods="debel-podman.sh"
 alias dx="distrobox"
 alias tmx="debel-tmux-session-picker.sh"
+alias chwg="debel-wg.sh"
 
 # fzf funcs
 _fzf_compgen_path() {

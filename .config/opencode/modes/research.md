@@ -3,17 +3,11 @@ tools:
   read: true
   write: true
   edit: false
-  list: true
   grep: true
   glob: true
   bash: false
-  patch: true
-  todoread: true
   todowrite: true
   webfetch: true
-  websearch: true
-  codesearch: true
-  lsp: true
   skill: true
   question: true
 permission:

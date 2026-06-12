@@ -51,7 +51,7 @@ LazyVim.safe_keymap_set("n", "]j", "<C-i>", { desc = "jump to previous jump list
 
 LazyVim.safe_keymap_set("v", "r", '"_dP', { desc = "paste replace" })
 
-LazyVim.safe_keymap_set("n", "<leader>t", function()
+LazyVim.safe_keymap_set("n", "<leader><enter>", function()
   Snacks.terminal()
 end, { desc = "Toggle terminal (float)" })
 
@@ -98,10 +98,10 @@ LazyVim.safe_keymap_set("n", "gS", "<cmd>Trouble lsp toggle<cr>", { desc = "Show
 LazyVim.safe_keymap_set("n", "<leader>bx", close_none_file_bufs, { desc = "Close all none-file buffers" })
 
 setup_custom_ts_moves({
-  ["f"] = { "@debel.func", "function definition" },
+  ["gf"] = { "@debel.func", "function definition" },
   ["gt"] = { "@debel.type", "type definition" },
   ["gv"] = { "@debel.decl", "variable declaration" },
-  ["gf"] = { "@debel.field", "struct / map field" },
+  ["gm"] = { "@debel.field", "struct / map field" },
   ["gc"] = { "@debel.call", "function call" },
   ["gg"] = { "@debel.go", "go routine" },
   ["gd"] = { "@debel.defer", "defer statement" },

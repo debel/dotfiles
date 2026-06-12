@@ -33,7 +33,9 @@
         "qwen3-next-coder": {},
         "qwen3-122": {},
         "qwen3.6": {},
-        "nemotron": {}
+        "nemotron": {},
+        "gemma4-mlx": {},
+        "qwen3.6-mlx": {}
       }
     },
     "vllm-mlx": {
